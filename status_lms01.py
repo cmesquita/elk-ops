@@ -1,0 +1,11 @@
+#status_lms01.py
+connect("weblogic","passw0rd","t3://172.16.3.125:7001")
+domainRuntime()
+cd('ServerRuntimes/lms01')
+print "OpenSocketTotal: %s" % (cmo.getOpenSocketsCurrentCount())
+cd('ApplicationRuntimes/lms/ComponentRuntimes/lms01_/lmsa')
+print "OpenSessionsCurrentCount: %s" % (cmo.getOpenSessionsCurrentCount())
+cd('ServerRuntimes/lms01/ThreadPoolRuntime/ThreadPoolRuntime')
+print "getHoggingThreadCount: %s" % (cmo.getHoggingThreadCount())
+print "getStuckThreadCount: %s" % (cmo.getStuckThreadCount())
+disconnect()
