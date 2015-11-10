@@ -24,8 +24,8 @@ def getJVMmetrics():
         
 def getOpenSockets():
 	while 1:
-        serverNames = getRunningServerNames()
-        domainRuntime()
+		serverNames = getRunningServerNames()
+		domainRuntime()
         for name in serverNames:
             print 'Now checking '+name.getName()
             try:
@@ -39,8 +39,8 @@ def getOpenSockets():
 
 def getHTTPSessions():
 	while 1:
-        serverNames = getRunningServerNames()
-        domainRuntime()
+		serverNames = getRunningServerNames()
+		domainRuntime()
         for name in serverNames:
             print 'Now checking '+name.getName()
             try:
