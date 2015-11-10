@@ -8,7 +8,6 @@ connect_string = "t3://192.168.47.205:7001"
 connect(user,password,connect_string)
 
 def getJVMmetrics():
-	while 1:
 		serverNames = getRunningServerNames()
 		domainRuntime()
         for name in serverNames:
@@ -23,8 +22,6 @@ def getJVMmetrics():
 				print "Ignoring exception " + e.getMessage()
         
 def getOpenSockets():
-	'''
-	while 1:
 		serverNames = getRunningServerNames()
 		domainRuntime()
         for name in serverNames:
@@ -37,10 +34,8 @@ def getOpenSockets():
               # this typically means the server is not active, just ignore
               # pass
                 print "Ignoring exception " + e.getMessage()
-	'''
+
 def getHTTPSessions():
-	'''
-	while 1:
 		serverNames = getRunningServerNames()
 		domainRuntime()
         for name in serverNames:
@@ -53,10 +48,9 @@ def getHTTPSessions():
               # this typically means the server is not active, just ignore
               # pass
                 print "Ignoring exception " + e.getMessage()
-	'''
+
 def getGCElapsedTime():
 	'''
-	while 1:
 	serverNames = getRunningServerNames()
 	domainRuntime()
 	for name in serverNames:
@@ -69,9 +63,10 @@ def getGCElapsedTime():
 	# this typically means the server is not active, just ignore
 	# pass
 	print "Ignoring exception " + e.getMessage()
-	'''	
+	'''
 def getTimeStamp():
 	timestampNOW = time.ctime()
+	print timestampNOW
 	
 def getRunningServerNames():
 	# only returns the currently running servers in the domain
@@ -81,7 +76,7 @@ if __name__== "main":
 
 # we are still working in progress
 	getJVMmetrics()
-#	getHTTPSessions()
+	getHTTPSessions()
 #	getGCElapsedTime()
-#	getTimeStamp()
+	getTimeStamp()
 	disconnect()
