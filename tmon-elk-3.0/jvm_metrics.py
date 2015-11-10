@@ -1,8 +1,8 @@
 #jvm_metrics.py
 import time
 user = "weblogic"
-password = "passw0rd"
-connect_string = "t3://172.16.3.125:7001"
+password = "manager1"
+connect_string = "t3://192.168.47.205:7001"
 
 # connecting weblogic	 
 connect(user,password,connect_string)
@@ -23,6 +23,7 @@ def getJVMmetrics():
 				print "Ignoring exception " + e.getMessage()
         
 def getOpenSockets():
+	'''
 	while 1:
 		serverNames = getRunningServerNames()
 		domainRuntime()
@@ -36,8 +37,9 @@ def getOpenSockets():
               # this typically means the server is not active, just ignore
               # pass
                 print "Ignoring exception " + e.getMessage()
-
+	'''
 def getHTTPSessions():
+	'''
 	while 1:
 		serverNames = getRunningServerNames()
 		domainRuntime()
@@ -51,7 +53,7 @@ def getHTTPSessions():
               # this typically means the server is not active, just ignore
               # pass
                 print "Ignoring exception " + e.getMessage()
-	
+	'''
 def getGCElapsedTime():
 	'''
 	while 1:
@@ -79,8 +81,7 @@ if __name__== "main":
 
 # we are still working in progress
 	getJVMmetrics()
-	getOpenSockets()
-	getHTTPSessions()
+#	getHTTPSessions()
 #	getGCElapsedTime()
-	getTimeStamp()
+#	getTimeStamp()
 	disconnect()
