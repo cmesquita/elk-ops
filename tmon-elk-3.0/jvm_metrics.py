@@ -9,15 +9,15 @@ connect(user,password,connect_string)
 
 def getJVMmetrics():
 	while 1:
-        serverNames = getRunningServerNames()
-        domainRuntime()
+		serverNames = getRunningServerNames()
+		domainRuntime()
         for name in serverNames:
-            print 'Now checking '+name.getName()
-            try:
-              cd("/ServerRuntimes/"+name.getName()+"/JVMRuntime/"+name.getName())
-              heapSize = cmo.getHeapSizeCurrent()
-              print heapSize
-            except WLSTException,e:
+			print 'Now checking '+name.getName()
+			try:
+				cd("/ServerRuntimes/"+name.getName()+"/JVMRuntime/"+name.getName())
+				heapSize = cmo.getHeapSizeCurrent()
+				print heapSize
+			except WLSTException,e:
               # this typically means the server is not active, just ignore
               # pass
                 print "Ignoring exception " + e.getMessage()
@@ -76,6 +76,8 @@ def getRunningServerNames():
 	return domainRuntimeService.getServerRuntimes()
  
 if __name__== "main":
+
+# we are still working in progress
 	getJVMmetrics()
 	getOpenSockets()
 	getHTTPSessions()
