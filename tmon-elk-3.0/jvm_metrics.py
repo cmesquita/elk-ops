@@ -36,19 +36,20 @@ def getOpenSockets():
 			print "Ignoring exception " + e.getMessage()
 
 def getHTTPSessions():
+	'''
 	serverNames = getRunningServerNames()
 	domainRuntime()
 	for name in serverNames:
 		print 'Now checking '+name.getName()
 		try:
-			cd("/ServerRuntimes/"+name.getName())
+			cd("/ApplicationRuntimes/"+name.getName())
 			OpenSessionCurrentCount = cmo.getOpenSessionsCurrentCount()
 			print OpenSessionCurrentCount
 		except WLSTException,e:
 			# this typically means the server is not active, just ignore
 			# pass
 			print "Ignoring exception " + e.getMessage()
-
+	'''
 def getGCElapsedTime():
 	'''
 	serverNames = getRunningServerNames()
@@ -75,7 +76,7 @@ def getRunningServerNames():
 if __name__== "main":
 #we are still working in progress
 	getJVMmetrics()
-	getHTTPSessions()
+#getHTTPSessions()
 #getGCElapsedTime()
 	getTimeStamp()
 	disconnect()
