@@ -8,32 +8,32 @@ connect_string = "t3://192.168.47.205:7001"
 connect(user,password,connect_string)
 
 def getJVMmetrics():
-		serverNames = getRunningServerNames()
-		domainRuntime()
-        for name in serverNames:
-			print 'Now checking '+name.getName()
-			try:
-				cd("/ServerRuntimes/"+name.getName()+"/JVMRuntime/"+name.getName())
-				heapSize = cmo.getHeapSizeCurrent()
-				print heapSize
-			except WLSTException,e:
-              # this typically means the server is not active, just ignore
-              # pass
-				print "Ignoring exception " + e.getMessage()
+	serverNames = getRunningServerNames()
+	domainRuntime()
+	for name in serverNames:
+		print 'Now checking '+name.getName()
+		try:
+			cd("/ServerRuntimes/"+name.getName()+"/JVMRuntime/"+name.getName())
+			heapSize = cmo.getHeapSizeCurrent()
+			print heapSize
+		except WLSTException,e:
+			# this typically means the server is not active, just ignore
+			# pass
+			print "Ignoring exception " + e.getMessage()
         
 def getOpenSockets():
-		serverNames = getRunningServerNames()
-		domainRuntime()
-        for name in serverNames:
-            print 'Now checking '+name.getName()
-            try:
-				cd("/ServerRuntimes/"+name.getName())
-				getOpenSocketsCurrentCount = cmo.getOpenSocketsCurrentCount()
-				print getOpenSocketsCurrentCount
-            except WLSTException,e:
-              # this typically means the server is not active, just ignore
-              # pass
-                print "Ignoring exception " + e.getMessage()
+	serverNames = getRunningServerNames()
+	domainRuntime()
+    for name in serverNames:
+        print 'Now checking '+name.getName()
+        try:
+			cd("/ServerRuntimes/"+name.getName())
+			getOpenSocketsCurrentCount = cmo.getOpenSocketsCurrentCount()
+			print getOpenSocketsCurrentCount
+        except WLSTException,e:
+			# this typically means the server is not active, just ignore
+			# pass
+			print "Ignoring exception " + e.getMessage()
 
 def getHTTPSessions():
 		serverNames = getRunningServerNames()
