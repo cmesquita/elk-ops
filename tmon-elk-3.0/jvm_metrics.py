@@ -20,7 +20,7 @@ def getJVMmetrics():
 			except WLSTException,e:
               # this typically means the server is not active, just ignore
               # pass
-                print "Ignoring exception " + e.getMessage()
+				print "Ignoring exception " + e.getMessage()
         
 def getOpenSockets():
 	while 1:
@@ -29,9 +29,9 @@ def getOpenSockets():
         for name in serverNames:
             print 'Now checking '+name.getName()
             try:
-              cd("/ServerRuntimes/"+name.getName())
-              getOpenSocketsCurrentCount = cmo.getOpenSocketsCurrentCount()
-			  print getOpenSocketsCurrentCount
+				cd("/ServerRuntimes/"+name.getName())
+				getOpenSocketsCurrentCount = cmo.getOpenSocketsCurrentCount()
+				print getOpenSocketsCurrentCount
             except WLSTException,e:
               # this typically means the server is not active, just ignore
               # pass
@@ -44,9 +44,9 @@ def getHTTPSessions():
         for name in serverNames:
             print 'Now checking '+name.getName()
             try:
-              cd("/ServerRuntimes/"+name.getName())
-              OpenSessionCurrentCount = cmo.getOpenSessionsCurrentCount()
-			  print OpenSessionCurrentCount
+				cd("/ServerRuntimes/"+name.getName())
+				OpenSessionCurrentCount = cmo.getOpenSessionsCurrentCount()
+				print OpenSessionCurrentCount
             except WLSTException,e:
               # this typically means the server is not active, just ignore
               # pass
