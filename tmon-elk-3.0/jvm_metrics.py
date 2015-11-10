@@ -53,21 +53,21 @@ def getHTTPSessions():
                 print "Ignoring exception " + e.getMessage()
 	
 def getGCElapsedTime():
-'''
+	'''
 	while 1:
-        serverNames = getRunningServerNames()
-        domainRuntime()
-        for name in serverNames:
-            print 'Now checking '+name.getName()
-            try:
-              cd("/ServerRuntimes/"+name.getName()+"/JVMRuntime/"+name.getName())
-              heapSize = cmo.getHeapSizeCurrent()
-              print heapSize
-            except WLSTException,e:
-              # this typically means the server is not active, just ignore
-              # pass
-                print "Ignoring exception " + e.getMessage()
-'''	
+	serverNames = getRunningServerNames()
+	domainRuntime()
+	for name in serverNames:
+	print 'Now checking '+name.getName()
+	try:
+	cd("/ServerRuntimes/"+name.getName()+"/JVMRuntime/"+name.getName())
+	heapSize = cmo.getHeapSizeCurrent()
+	print heapSize
+	except WLSTException,e:
+	# this typically means the server is not active, just ignore
+	# pass
+	print "Ignoring exception " + e.getMessage()
+	'''	
 def getTimeStamp():
 	timestampNOW = time.ctime()
 	
