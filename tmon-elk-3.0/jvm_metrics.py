@@ -76,6 +76,7 @@ def getRunningServerNames():
 if __name__== "main":
 #we are still working in progress
 	getJVMmetrics()
+	getOpenSockets()
 #getHTTPSessions()
 #getGCElapsedTime()
 	getTimeStamp()
