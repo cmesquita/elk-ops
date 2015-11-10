@@ -1,5 +1,5 @@
 #jvm_metrics.py
-import time
+import time as pytime
 user = "weblogic"
 password = "manager1"
 connect_string = "t3://192.168.47.205:7001"
@@ -66,7 +66,7 @@ def getGCElapsedTime():
 	print "Ignoring exception " + e.getMessage()
 	'''
 def getTimeStamp():
-	timestampNOW = time.ctime()
+	timestampNOW = pytime.ctime()
 	print timestampNOW
 	
 def getRunningServerNames():
