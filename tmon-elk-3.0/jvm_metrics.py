@@ -9,7 +9,9 @@ connect(user,password,connect_string)
 
 def getJVMmetrics():
 	serverNames = getRunningServerNames()
+	if pwd() != 'domainRuntime:/':
 	domainRuntime()
+	
 	for name in serverNames:
 		print 'Now checking '+name.getName()
 		try:
@@ -23,18 +25,18 @@ def getJVMmetrics():
         
 def getOpenSockets():
 	serverNames = getRunningServerNames()
-	if pwd() == 'domainRuntime:/':
+	if pwd() != 'domainRuntime:/':
 		domainRuntime()
-		for name in serverNames:
-			print 'Now checking '+name.getName()
-			try:
-				cd("/ServerRuntimes/"+name.getName())
-				getOpenSocketsCurrentCount = cmo.getOpenSocketsCurrentCount()
-				print getOpenSocketsCurrentCount
-			except WLSTException,e:
-				# this typically means the server is not active, just ignore
-				# pass
-				print "Ignoring exception " + e.getMessage()
+	for name in serverNames:
+		print 'Now checking '+name.getName()
+		try:
+			cd("/ServerRuntimes/"+name.getName())
+			getOpenSocketsCurrentCount = cmo.getOpenSocketsCurrentCount()
+			print getOpenSocketsCurrentCount
+		except WLSTException,e:
+			# this typically means the server is not active, just ignore
+			# pass
+			print "Ignoring exception " + e.getMessage()
 
 def getHTTPSessions():
 	'''
