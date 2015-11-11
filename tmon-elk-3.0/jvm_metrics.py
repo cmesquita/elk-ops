@@ -43,13 +43,17 @@ def getOpenSockets():
 			print "Ignoring exception " + e.getMessage()
 	return getOpenSocketsCurrentCount
 
+'''
 def getHTTPSessions():
-	'''
 	serverNames = getRunningServerNames()
-	domainRuntime()
+	pwdstr = pwd()[:15]
+	if pwdstr != 'domainRuntime:/':
+		domainRuntime()
 	for name in serverNames:
 		print 'Now checking '+name.getName()
 		try:
+			cd('ApplicationRuntimes/lms/ComponentRuntimes/lms01_/lmsa')
+			cd("/ServerRuntimes/"+name.getName()+"/ApplicationRuntimes/"+name.getApp()
 			cd("/ApplicationRuntimes/"+name.getName())
 			OpenSessionCurrentCount = cmo.getOpenSessionsCurrentCount()
 			print OpenSessionCurrentCount
@@ -57,7 +61,7 @@ def getHTTPSessions():
 			# this typically means the server is not active, just ignore
 			# pass
 			print "Ignoring exception " + e.getMessage()
-	'''
+'''	
 def getGCElapsedTime():
 	'''
 	serverNames = getRunningServerNames()
