@@ -10,8 +10,7 @@ connect(user,password,connect_string)
 def getJVMmetrics():
 	serverNames = getRunningServerNames()
 	if pwd() != 'domainRuntime:/':
-	domainRuntime()
-	
+		domainRuntime()
 	for name in serverNames:
 		print 'Now checking '+name.getName()
 		try:
