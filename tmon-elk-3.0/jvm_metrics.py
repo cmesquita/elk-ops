@@ -8,22 +8,22 @@ connect_string = "t3://192.168.47.205:7001"
 connect(user,password,connect_string)
 
 def getJVMmetrics():
-	serverNames = getRunningServerNames()
-	pwdstr = pwd()[:15]
-	getheapSize = ""
-	if pwdstr != 'domainRuntime:/':
-		domainRuntime()
-	for name in serverNames:
-		print 'Now checking '+name.getName()
-		try:
-			cd("/ServerRuntimes/"+name.getName()+"/JVMRuntime/"+name.getName())
-			heapSize = cmo.getHeapSizeCurrent()
-			getheapSize = str(heapSize)  + ' ' + getheapSize
-		except WLSTException,e:
-			# this typically means the server is not active, just ignore
-			# pass
-			print "Ignoring exception " + e.getMessage()
-	return getheapSize
+        serverNames = getRunningServerNames()
+        pwdstr = pwd()[:15]
+        getheapSize = ""
+        if pwdstr != 'domainRuntime:/':
+                domainRuntime()
+        for name in serverNames:
+                print 'Now checking '+name.getName()
+                try:
+                        cd("/ServerRuntimes/"+name.getName()+"/JVMRuntime/"+name.getName())
+                        heapSize = cmo.getHeapSizeCurrent()
+                        getheapSize = str(heapSize)  + ' ' + getheapSize
+                except WLSTException,e:
+                        # this typically means the server is not active, just ignore
+                        # pass
+                        print "Ignoring exception " + e.getMessage()
+        return getheapSize
         
 def getOpenSockets():
 	serverNames = getRunningServerNames()
