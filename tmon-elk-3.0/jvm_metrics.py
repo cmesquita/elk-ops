@@ -9,7 +9,8 @@ connect(user,password,connect_string)
 
 def getJVMmetrics():
 	serverNames = getRunningServerNames()
-	if pwd() != 'domainRuntime:/':
+	pwdstr = pwd()[:15]
+	if pwdstr != 'domainRuntime:/':
 		domainRuntime()
 	for name in serverNames:
 		print 'Now checking '+name.getName()
@@ -24,7 +25,8 @@ def getJVMmetrics():
         
 def getOpenSockets():
 	serverNames = getRunningServerNames()
-	if pwd() != 'domainRuntime:/':
+	pwdstr = pwd()[:15]
+	if pwdstr != 'domainRuntime:/':
 		domainRuntime()
 	for name in serverNames:
 		print 'Now checking '+name.getName()
