@@ -10,38 +10,33 @@ connect(user,password,connect_string)
 def getJVMmetrics():
 	serverNames = getRunningServerNames()
 	pwdstr = pwd()[:15]
-	heapSize = ""
+	getheapSize = ""
 	if pwdstr != 'domainRuntime:/':
 		domainRuntime()
 	for name in serverNames:
 		print 'Now checking '+name.getName()
 		try:
 			cd("/ServerRuntimes/"+name.getName()+"/JVMRuntime/"+name.getName())
-			if str(heapSize) == '': 
-				heapSize = cmo.getHeapSizeCurrent()
-				print heapSize
-				print "estive aqui null"
-			else:
-				print heapSize
-				heapSize.append(cmo.getHeapSizeCurrent())
-				print heapSize
-				print "estive aqui not null"
+			heapSize = cmo.getHeapSizeCurrent()
+			getheapSize = str(heapSize)  + ' ' + getheapSize
 		except WLSTException,e:
 			# this typically means the server is not active, just ignore
 			# pass
 			print "Ignoring exception " + e.getMessage()
-	return heapSize
+	return getheapSize
         
 def getOpenSockets():
 	serverNames = getRunningServerNames()
 	pwdstr = pwd()[:15]
+	getOpenSocketsCurrentCount = ""
 	if pwdstr != 'domainRuntime:/':
 		domainRuntime()
 	for name in serverNames:
 		print 'Now checking '+name.getName()
 		try:
 			cd("/ServerRuntimes/"+name.getName())
-			getOpenSocketsCurrentCount = getOpenSocketsCurrentCount + cmo.getOpenSocketsCurrentCount()
+			OpenSocketsCurrentCount = cmo.getOpenSocketsCurrentCount()	
+			getOpenSocketsCurrentCount = str(OpenSocketsCurrentCount) + ' ' + getOpenSocketsCurrentCount
 		except WLSTException,e:
 			# this typically means the server is not active, just ignore
 			# pass
@@ -88,10 +83,10 @@ def getRunningServerNames():
  
 if __name__== "main":
 #we are still working in progress
-	print getJVMmetrics()
-	
-	#getOpenSockets()
+	x = getJVMmetrics() + getOpenSockets()
+	print x	
 #getHTTPSessions()
 #getGCElapsedTime()
 	getTimeStamp()
 	disconnect()
+
