@@ -43,25 +43,28 @@ def getOpenSockets():
 			print "Ignoring exception " + e.getMessage()
 	return getOpenSocketsCurrentCount
 
-'''
+
 def getHTTPSessions():
-	serverNames = getRunningServerNames()
 	pwdstr = pwd()[:15]
 	if pwdstr != 'domainRuntime:/':
 		domainRuntime()
-	for name in serverNames:
-		print 'Now checking '+name.getName()
-		try:
-			cd('ApplicationRuntimes/lms/ComponentRuntimes/lms01_/lmsa')
-			cd("/ServerRuntimes/"+name.getName()+"/ApplicationRuntimes/"+name.getApp()
-			cd("/ApplicationRuntimes/"+name.getName())
-			OpenSessionCurrentCount = cmo.getOpenSessionsCurrentCount()
-			print OpenSessionCurrentCount
-		except WLSTException,e:
-			# this typically means the server is not active, just ignore
-			# pass
-			print "Ignoring exception " + e.getMessage()
-'''	
+	serverNames = getRunningServerNames()
+	apps = getAppStatus()
+	for app in apps	
+		for server in serverNames:
+			print 'Now checking '+ server.getName() + ' ' + app
+			#try:
+				#cd('ApplicationRuntimes/lms/ComponentRuntimes/lms01_/lmsa')
+			#	cd("/ServerRuntimes/"+name.getName()+"/ApplicationRuntimes/"+app()/ComponentRuntimes
+				print "/ServerRuntimes/" + name.getName() + "/ApplicationRuntimes/" +app "/ComponentRuntimes"
+				#cd("/ApplicationRuntimes/"+name.getName())
+				#OpenSessionCurrentCount = cmo.getOpenSessionsCurrentCount()
+				#print OpenSessionCurrentCount
+			#except WLSTException,e:
+				# this typically means the server is not active, just ignore
+				# pass
+			#	print "Ignoring exception " + e.getMessage()
+	
 def getGCElapsedTime():
 	'''
 	serverNames = getRunningServerNames()
@@ -84,6 +87,10 @@ def getTimeStamp():
 def getRunningServerNames():
 	# only returns the currently running servers in the domain
 	return domainRuntimeService.getServerRuntimes()
+ 
+ def getAppStatus():
+	cd('domainRuntime:/AppRuntimeStateRuntime/AppRuntimeStateRuntime')
+	return cmo.getApplicationIds()
  
 if __name__== "main":
 #we are still working in progress

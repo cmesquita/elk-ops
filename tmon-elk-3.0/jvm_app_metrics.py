@@ -6,23 +6,28 @@ connect_string = "t3://192.168.47.205:7001"
 
 # connecting weblogic	 
 connect(user,password,connect_string)
-'''
+
 def getHTTPSessions():
+	pwdstr = pwd()[:15]
+	if pwdstr != 'domainRuntime:/':
+		domainRuntime()
 	serverNames = getRunningServerNames()
-	domainRuntime()
-	for name in serverNames:
-		print 'Now checking '+name.getName()
-		try:
-			#cd('ApplicationRuntimes/lms/ComponentRuntimes/lms01_/lmsa')
-			#cd("/ServerRuntimes/"+name.getName()+"/ApplicationRuntimes/"+name.getApp()
-			cd("/ApplicationRuntimes/"+name.getName())
-			OpenSessionCurrentCount = cmo.getOpenSessionsCurrentCount()
-			print OpenSessionCurrentCount
-		except WLSTException,e:
-			# this typically means the server is not active, just ignore
-			# pass
-			print "Ignoring exception " + e.getMessage()
-'''
+	apps = getAppStatus()
+	for app in apps	
+		for server in serverNames:
+			print 'Now checking '+ server.getName() + ' ' + app
+			#try:
+				#cd('ApplicationRuntimes/lms/ComponentRuntimes/lms01_/lmsa')
+			#	cd("/ServerRuntimes/"+name.getName()+"/ApplicationRuntimes/"+app()/ComponentRuntimes
+				print "/ServerRuntimes/" + name.getName() + "/ApplicationRuntimes/" +app "/ComponentRuntimes"
+				#cd("/ApplicationRuntimes/"+name.getName())
+				#OpenSessionCurrentCount = cmo.getOpenSessionsCurrentCount()
+				#print OpenSessionCurrentCount
+			#except WLSTException,e:
+				# this typically means the server is not active, just ignore
+				# pass
+			#	print "Ignoring exception " + e.getMessage()
+	
 def ServerState():
 	servers = getRunningServerNames()
 	domainRuntime()
@@ -52,3 +57,4 @@ def getAppStatus():
 
 if __name__== "main":
 	ServerState()
+	getHTTPSessions()
