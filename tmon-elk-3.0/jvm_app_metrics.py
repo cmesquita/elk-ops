@@ -1,11 +1,18 @@
 #jvm_metrics.py
 import time as pytime
+import hashlib
+
 user = "weblogic"
 password = "manager1"
 connect_string = "t3://192.168.47.205:7001"
 
 # connecting weblogic	 
 connect(user,password,connect_string)
+
+def stackHash():
+	print(hashlib.algorithms_available)
+	print(hashlib.algorithms_guaranteed)
+
 
 def getTest():
 	domainConfig()
