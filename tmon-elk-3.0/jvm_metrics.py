@@ -43,27 +43,32 @@ def getOpenSockets():
 			print "Ignoring exception " + e.getMessage()
 	return getOpenSocketsCurrentCount
 
-
 def getHTTPSessions():
-	pwdstr = pwd()[:15]
-	if pwdstr != 'domainRuntime:/':
-		domainRuntime()
-	serverNames = getRunningServerNames()
-	apps = getAppStatus()
-	for app in apps	
-		for server in serverNames:
-			print 'Now checking '+ server.getName() + ' ' + app
-			#try:
-				#cd('ApplicationRuntimes/lms/ComponentRuntimes/lms01_/lmsa')
-			#	cd("/ServerRuntimes/"+name.getName()+"/ApplicationRuntimes/"+app()/ComponentRuntimes
-				print "/ServerRuntimes/" + name.getName() + "/ApplicationRuntimes/" +app "/ComponentRuntimes"
-				#cd("/ApplicationRuntimes/"+name.getName())
-				#OpenSessionCurrentCount = cmo.getOpenSessionsCurrentCount()
-				#print OpenSessionCurrentCount
-			#except WLSTException,e:
-				# this typically means the server is not active, just ignore
-				# pass
-			#	print "Ignoring exception " + e.getMessage()
+        pwdstr = pwd()[:15]
+        if pwdstr != 'domainRuntime:/':
+                domainRuntime()
+        serverNames = getRunningServerNames()
+        #apps = getAppStatus()
+        apps=cmo.getAppDeployments()
+        pwdstr = pwd()[:15]
+        if pwdstr != 'domainRuntime:/':
+                domainRuntime()
+        for app in apps:
+                for server in serverNames:
+                        try:
+                                appName = str(app.getName())
+                                serverName = str(server.getName())
+                                pathName = '/ServerRuntimes/' + serverName + '/ApplicationRuntimes/' + str(appName) + '/ComponentRuntimes/' + serverName + '_/' + str(appName)
+                                print pwd()
+                                print pathName
+                                cd(pathName)
+                                print pwd()
+                                print "agora sim"
+                                print "OpenSessionsCurrentCount: " +  str(cmo.getOpenSessionsCurrentCount())
+                        except WLSTException,e:
+                                print "fudeo"
+                                #print "Ignoring exception " + e.getMessage()
+
 	
 def getGCElapsedTime():
 	'''
