@@ -44,13 +44,9 @@ def getOpenSockets():
 	return getOpenSocketsCurrentCount
 
 def getHTTPSessions():
-        pwdstr = pwd()[:15]
-        if pwdstr != 'domainRuntime:/':
-                domainRuntime()
         serverNames = getRunningServerNames()
-        #apps = getAppStatus()
-        apps=cmo.getAppDeployments()
-        pwdstr = pwd()[:15]
+        apps = getAppStatus()
+		pwdstr = pwd()[:15]
         if pwdstr != 'domainRuntime:/':
                 domainRuntime()
         for app in apps:
@@ -58,33 +54,27 @@ def getHTTPSessions():
                         try:
                                 appName = str(app.getName())
                                 serverName = str(server.getName())
-                                pathName = '/ServerRuntimes/' + serverName + '/ApplicationRuntimes/' + str(appName) + '/ComponentRuntimes/' + serverName + '_/' + str(appName)
-                                print pwd()
-                                print pathName
-                                cd(pathName)
-                                print pwd()
-                                print "agora sim"
-                                print "OpenSessionsCurrentCount: " +  str(cmo.getOpenSessionsCurrentCount())
+                                #pathName = '/ServerRuntimes/' + serverName + '/ApplicationRuntimes/' + str(appName) + '/ComponentRuntimes/' + serverName + '_/' + str(appName)
+                                pathName = '/ServerRuntimes/' + serverName + '/ApplicationRuntimes/' + appName + '/ComponentRuntimes/' + serverName + '_/' + appName
+								cd(pathName)
+                                OpenSessionsCurrentCount = str(cmo.getOpenSessionsCurrentCount())
+								getOpenSessionsCurrentCount = str(OpenSessionsCurrentCount) + ' ' + getOpenSessionsCurrentCount
                         except WLSTException,e:
-                                print "fudeo"
+                                pass
                                 #print "Ignoring exception " + e.getMessage()
-
+		return getOpenSessionsCurrentCount
 	
+'''
 def getGCElapsedTime():
-	'''
-	serverNames = getRunningServerNames()
-	domainRuntime()
-	for name in serverNames:
-	print 'Now checking '+name.getName()
-	try:
-	cd("/ServerRuntimes/"+name.getName()+"/JVMRuntime/"+name.getName())
-	heapSize = cmo.getHeapSizeCurrent()
-	print heapSize
-	except WLSTException,e:
-	# this typically means the server is not active, just ignore
-	# pass
-	print "Ignoring exception " + e.getMessage()
-	'''
+	customPathGCOld = "java.lang:type=GarbageCollector,name=G1 Old Generation"
+	customPathGCYoung = "java.lang:type=GarbageCollector,name=G1 Young Generation"
+	customConnectString = ""
+	user = "weblogic"
+	password = "manager1"
+	connect_string = "t3://192.168.47.205:7001"
+	custom()
+'''
+	
 def getTimeStamp():
 	timestampNOW = pytime.ctime()
 	return timestampNOW
@@ -93,13 +83,13 @@ def getRunningServerNames():
 	# only returns the currently running servers in the domain
 	return domainRuntimeService.getServerRuntimes()
  
- def getAppStatus():
-	cd('domainRuntime:/AppRuntimeStateRuntime/AppRuntimeStateRuntime')
-	return cmo.getApplicationIds()
- 
+ def getAppStatus():1
+	return cmo.getAppDeployments()
+
+	
 if __name__== "main":
 #we are still working in progress
-	x = getJVMmetrics() + getOpenSockets()
+	x = getJVMmetrics() + getOpenSockets() + getHTTPSessions() 
 	print x	
 #getHTTPSessions()
 #getGCElapsedTime()
