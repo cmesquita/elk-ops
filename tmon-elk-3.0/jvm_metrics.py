@@ -44,9 +44,10 @@ def getOpenSockets():
 	return getOpenSocketsCurrentCount
 
 def getHTTPSessions():
+	getOpenSessionsCurrentCount = ""
         serverNames = getRunningServerNames()
         apps = getAppStatus()
-		pwdstr = pwd()[:15]
+	pwdstr = pwd()[:15]
         if pwdstr != 'domainRuntime:/':
                 domainRuntime()
         for app in apps:
@@ -56,9 +57,9 @@ def getHTTPSessions():
                                 serverName = str(server.getName())
                                 #pathName = '/ServerRuntimes/' + serverName + '/ApplicationRuntimes/' + str(appName) + '/ComponentRuntimes/' + serverName + '_/' + str(appName)
                                 pathName = '/ServerRuntimes/' + serverName + '/ApplicationRuntimes/' + appName + '/ComponentRuntimes/' + serverName + '_/' + appName
-								cd(pathName)
+				cd(pathName)
                                 OpenSessionsCurrentCount = str(cmo.getOpenSessionsCurrentCount())
-								getOpenSessionsCurrentCount = str(OpenSessionsCurrentCount) + ' ' + getOpenSessionsCurrentCount
+				getOpenSessionsCurrentCount = str(OpenSessionsCurrentCount) + ' ' + getOpenSessionsCurrentCount
                         except WLSTException,e:
                                 pass
                                 #print "Ignoring exception " + e.getMessage()
@@ -83,16 +84,16 @@ def getRunningServerNames():
 	# only returns the currently running servers in the domain
 	return domainRuntimeService.getServerRuntimes()
  
- def getAppStatus():1
+def getAppStatus():
+	domainConfig()
 	return cmo.getAppDeployments()
 
 	
 if __name__== "main":
 #we are still working in progress
-	x = getJVMmetrics() + getOpenSockets() + getHTTPSessions() 
+	x = getJVMmetrics() + getOpenSockets() + getHTTPSessions() + getTimeStamp()
 	print x	
 #getHTTPSessions()
 #getGCElapsedTime()
-	getTimeStamp()
 	disconnect()
 
