@@ -1,11 +1,15 @@
-#jvm_metrics.py
 import time as pytime
-user = "weblogic"
-password = "manager1"
-connect_string = "t3://192.168.47.205:7001"
+from wlstModule import *
 
-# connecting weblogic	 
-connect(user,password,connect_string)
+def getGCmetrics():
+	connect('weblogic','manager1','t3://192.168.47.205:7003')
+	custom()
+	cd('java.lang')
+	cd('java.lang:type=GarbageCollector,name=G1 Old Generation')
+	getCollectionTime = get('CollectionTime')
+	getCollectionCount = get('CollectionCount')
+	gcmetrics = str(getCollectionTime) + ' ' + str(getCollectionCount)
+	return gcmetrics
 
 def getJVMmetrics():
         serverNames = getRunningServerNames()
@@ -91,8 +95,9 @@ def getAppStatus():
 	
 if __name__== "main":
 #we are still working in progress
-	x = getJVMmetrics() + getOpenSockets() + getHTTPSessions() + getTimeStamp()
-	print x	
+	#x = getJVMmetrics() + getOpenSockets() + getHTTPSessions() + getTimeStamp()
+	#x = getGCmetrics()
+	#print x	
 #getHTTPSessions()
 #getGCElapsedTime()
 	disconnect()
