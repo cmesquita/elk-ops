@@ -13,24 +13,26 @@ def getGCmetrics( serverlist ):
 		getCollectionTime = get('CollectionTime')
 		getCollectionCount = get('CollectionCount')
 		gcmetrics.append( str(getCollectionTime) + ' ' + str(getCollectionCount))
+	disconnect()
 	return gcmetrics
 
-def getJVMmetrics():
-        serverNames = getRunningServerNames()
+def getJVMmetrics( serverlist , user , password , url ):
+	connect(user, password , url)
         pwdstr = pwd()[:15]
         getheapSize = ""
         if pwdstr != 'domainRuntime:/':
                 domainRuntime()
-        for name in serverNames:
-                print 'Now checking '+name.getName()
+        for name in serverlist:
+		j = name.split()
+		ServerName = j[0]
+                print 'Now checking ' + j[0] 
                 try:
-                        cd("/ServerRuntimes/"+name.getName()+"/JVMRuntime/"+name.getName())
-                        heapSize = cmo.getHeapSizeCurrent()
+                        cd("/ServerRuntimes/"+ServerName+"/JVMRuntime/"+ServerName)
+                        heapSize = get('HeapSizeCurrent')
                         getheapSize = str(heapSize)  + ' ' + getheapSize
                 except WLSTException,e:
                         # this typically means the server is not active, just ignore
-                        # pass
-                        print "Ignoring exception " + e.getMessage()
+			pass
         return getheapSize
         
 def getOpenSockets():
@@ -72,17 +74,6 @@ def getHTTPSessions():
                                 pass
                                 #print "Ignoring exception " + e.getMessage()
 		return getOpenSessionsCurrentCount
-	
-'''
-def getGCElapsedTime():
-	customPathGCOld = "java.lang:type=GarbageCollector,name=G1 Old Generation"
-	customPathGCYoung = "java.lang:type=GarbageCollector,name=G1 Young Generation"
-	customConnectString = ""
-	user = "weblogic"
-	password = "manager1"
-	connect_string = "t3://192.168.47.205:7001"
-	custom()
-'''
 	
 def getTimeStamp():
 	timestampNOW = pytime.ctime()
