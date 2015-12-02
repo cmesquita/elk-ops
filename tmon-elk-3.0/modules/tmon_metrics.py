@@ -25,7 +25,6 @@ def getJVMmetrics( serverlist , user , password , url ):
         for name in serverlist:
 		j = name.split()
 		ServerName = j[0]
-                print 'Now checking ' + j[0] 
                 try:
                         cd("/ServerRuntimes/"+ServerName+"/JVMRuntime/"+ServerName)
                         heapSize = get('HeapSizeCurrent')
@@ -35,58 +34,47 @@ def getJVMmetrics( serverlist , user , password , url ):
 			pass
         return getheapSize
         
-def getOpenSockets():
-	serverNames = getRunningServerNames()
+def getOpenSockets( serverlist , user , password , url ):
+	connect(user, password , url)
 	pwdstr = pwd()[:15]
 	getOpenSocketsCurrentCount = ""
 	if pwdstr != 'domainRuntime:/':
 		domainRuntime()
-	for name in serverNames:
-		print 'Now checking '+name.getName()
+	for name in serverlist:
+		j = name.split()
+		ServerName = j[0]
 		try:
-			cd("/ServerRuntimes/"+name.getName())
-			OpenSocketsCurrentCount = cmo.getOpenSocketsCurrentCount()	
+			cd("/ServerRuntimes/"+ServerName)
+			OpenSocketsCurrentCount = get('OpenSocketsCurrentCount')	
 			getOpenSocketsCurrentCount = str(OpenSocketsCurrentCount) + ' ' + getOpenSocketsCurrentCount
 		except WLSTException,e:
-			# this typically means the server is not active, just ignore
-			# pass
-			print "Ignoring exception " + e.getMessage()
+			pass
 	return getOpenSocketsCurrentCount
 
-def getHTTPSessions():
+def getHTTPSessions( serverlist , user , password , url , app ):
+	connect(user, password , url)
 	getOpenSessionsCurrentCount = ""
-        serverNames = getRunningServerNames()
-        apps = getAppStatus()
 	pwdstr = pwd()[:15]
         if pwdstr != 'domainRuntime:/':
                 domainRuntime()
-        for app in apps:
-                for server in serverNames:
-                        try:
-                                appName = str(app.getName())
-                                serverName = str(server.getName())
-                                #pathName = '/ServerRuntimes/' + serverName + '/ApplicationRuntimes/' + str(appName) + '/ComponentRuntimes/' + serverName + '_/' + str(appName)
-                                pathName = '/ServerRuntimes/' + serverName + '/ApplicationRuntimes/' + appName + '/ComponentRuntimes/' + serverName + '_/' + appName
-				cd(pathName)
-                                OpenSessionsCurrentCount = str(cmo.getOpenSessionsCurrentCount())
-				getOpenSessionsCurrentCount = str(OpenSessionsCurrentCount) + ' ' + getOpenSessionsCurrentCount
-                        except WLSTException,e:
-                                pass
-                                #print "Ignoring exception " + e.getMessage()
+	for name in serverlist:
+		j = name.split()
+		ServerName = j[0]
+		try:
+                	appName = str(app)
+                	serverName = str(ServerName)
+                	pathName = '/ServerRuntimes/' + serverName + '/ApplicationRuntimes/' + appName + '/ComponentRuntimes/' + serverName + '_/' + appName
+			cd(pathName)
+                	OpenSessionsCurrentCount = str('OpenSessionsCurrentCount')
+			getOpenSessionsCurrentCount = str(OpenSessionsCurrentCount) + ' ' + getOpenSessionsCurrentCount
+                except WLSTException,e:
+                	pass
+
 		return getOpenSessionsCurrentCount
 	
 def getTimeStamp():
 	timestampNOW = pytime.ctime()
 	return timestampNOW
-	
-def getRunningServerNames():
-	# only returns the currently running servers in the domain
-	return domainRuntimeService.getServerRuntimes()
- 
-def getAppStatus():
-	domainConfig()
-	return cmo.getAppDeployments()
-
 	
 if __name__== "main":
 #we are still working in progress
