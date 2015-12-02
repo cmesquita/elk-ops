@@ -1,14 +1,18 @@
 import time as pytime
 from wlstModule import *
 
-def getGCmetrics():
-	connect('weblogic','manager1','t3://192.168.47.205:7003')
-	custom()
-	cd('java.lang')
-	cd('java.lang:type=GarbageCollector,name=G1 Old Generation')
-	getCollectionTime = get('CollectionTime')
-	getCollectionCount = get('CollectionCount')
-	gcmetrics = str(getCollectionTime) + ' ' + str(getCollectionCount)
+def getGCmetrics( serverlist ):
+	gcmetrics = []
+	for i in serverlist:
+		j = i.split()
+		# [0] = container , [1] = method , [2] = user , [3] = pass , [4] = url
+		connect(j[2],j[3],j[4])
+		custom()
+		cd('java.lang')
+		cd('java.lang:type=GarbageCollector,name=G1 Old Generation')
+		getCollectionTime = get('CollectionTime')
+		getCollectionCount = get('CollectionCount')
+		gcmetrics.append( str(getCollectionTime) + ' ' + str(getCollectionCount))
 	return gcmetrics
 
 def getJVMmetrics():

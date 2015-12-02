@@ -1,10 +1,12 @@
-#from teste.tmon_confgparser import *
 import  lib.tmon_configparser as configparser
 import  modules.tmon_metrics as metrics
 
+def tmonMetricsMonitor():
+	return metrics.getGCmetrics(configparser.getServerList())
 
-#print configparser.getHoggingThread()
-#print  metrics.getGCmetrics()
+#def tmonStackMonitor():
 
-for i in configparser.getServerList():
-	print i
+if __name__== "main":
+	file = open("tmon.log","w")
+ 	file.write(  str(tmonMetricsMonitor())  )
+	file.close()
