@@ -65,7 +65,7 @@ def getHTTPSessions( serverlist , user , password , url , app ):
                 	serverName = str(ServerName)
                 	pathName = '/ServerRuntimes/' + serverName + '/ApplicationRuntimes/' + appName + '/ComponentRuntimes/' + serverName + '_/' + appName
 			cd(pathName)
-                	OpenSessionsCurrentCount = str('OpenSessionsCurrentCount')
+                	OpenSessionsCurrentCount = get('OpenSessionsCurrentCount')
 			getOpenSessionsCurrentCount = str(OpenSessionsCurrentCount) + ' ' + getOpenSessionsCurrentCount
                 except WLSTException,e:
                 	pass
