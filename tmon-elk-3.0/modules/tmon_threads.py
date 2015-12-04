@@ -1,6 +1,7 @@
 from wlstModule import *
 import lib.tmon_threaddump as extract
 import lib.tmon_md5	as hash
+import lib.tmon_elasticsearch as elasticsearch
 
 def getThreadStucksCount( serverlist ):
 	threads_details = []
@@ -38,6 +39,6 @@ def getThreadStackHash( serverlist , thread_id):
 		file = 'Thread_Dump_'+j[0]+'.txt'
 		stacktrace = extract.extractStackTrace( file, thread_id )
 		stackmd5 = hash.genMD5(stacktrace)
-		#elasticsearch.InsertIndex(stackmd5)
+		elasticsearch.InsertIndex(stackmd5)
 		return stackmd5
 		disconnect()	
