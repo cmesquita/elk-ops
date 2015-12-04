@@ -37,7 +37,7 @@ def getServerList():
 	gcmethod = []
 	serverlist = config.get('weblogic_servers', 'server_list').split()
 	for i in serverlist:
-		gcserverlist = i + ' ' + config.get('server_'+ i , 'gc_method') + ' ' + config.get('server_'+ i , 'username') + ' ' + config.get('server_'+ i , 'password') + ' ' + config.get('server_'+ i , 'connect_string')
+		gcserverlist = i + ' ' + config.get('server_'+ i , 'gc_method') + ' ' + config.get('server_'+ i , 'username') + ' ' + config.get('server_'+ i , 'password') + ' ' + config.get('server_'+ i , 'connect_string') + ' ' + config.get('server_'+ i , 'app_name')
 		gcmethod.append(gcserverlist)
 		'''
 		if gcmethod[len(gcmethod)-1] !='g1' and gcmethod[len(gcmethod)-1] !='markSweep' and  gcmethod[len(gcmethod)-1] !="" :

@@ -5,7 +5,7 @@ def getGCmetrics( serverlist ):
 	gcmetrics = []
 	for i in serverlist:
 		j = i.split()
-		# [0] = container , [1] = method , [2] = user , [3] = pass , [4] = url
+		# [0] = container , [1] = method , [2] = user , [3] = pass , [4] = url + [5] = appName
 		connect(j[2],j[3],j[4])
 		custom()
 		cd('java.lang')
@@ -59,7 +59,9 @@ def getHTTPSessions( serverlist , user , password , url , app ):
                 domainRuntime()
 	for name in serverlist:
 		j = name.split()
+		# [0] = container , [1] = method , [2] = user , [3] = pass , [4] = url , [5] appName
 		ServerName = j[0]
+		app = j[5]
 		try:
                 	appName = str(app)
                 	serverName = str(ServerName)
