@@ -22,7 +22,8 @@ def tmonStackMonitor():
 	#for j in i[0]:
 	#	print j
 	#print i[0]	
-	print threads.getThreadStackHash( paramServerList ,  i[0] )
+	for j in threads.getThreadStackHash( paramServerList ,  i[0] ):
+		print j
 
 		
 

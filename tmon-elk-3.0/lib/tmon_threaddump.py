@@ -1,12 +1,12 @@
 def extractStackTrace( file, threadid ):
 	inFile = open( file )
 	print "opening: " + file
-	buffer = ""
 	keepCurrentSet = False
+	stack_list = []
 	for thread in threadid:
-		print "iniciando thread:  " + thread
 		keepCurrentSet = False
 		inFile = open( file )
+		buffer = ""
 		for line in inFile:
 			#if line.find('INSTANCE 1'):
 			if thread in line:
@@ -20,5 +20,6 @@ def extractStackTrace( file, threadid ):
 				elif keepCurrentSet:
 					buffer += line
 		inFile.close()
-	return buffer
+		stack_list.append( buffer )
+	return stack_list
 	#inFile.close()

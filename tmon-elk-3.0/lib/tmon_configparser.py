@@ -56,3 +56,10 @@ def getServerList():
 def getHoggingThread():
 	thread_duration = config.get('hogging_thread','thread_duration')
 	return thread_duration
+
+#
+# get elasticsearch url
+#
+def getElasticsearch():
+	el_url = config.get('elasticsearch','url')
+	return el_url
