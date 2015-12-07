@@ -16,7 +16,8 @@ def InsertIndex( stacklist ):
 		response = conn.getresponse()
 		print response.status, response.reason
 		data = response.read()
-		print data
+		#this prints the elasticsearch response data		
+		#print data
 		conn.close()
 if __name__ == "main":
 	InsertIndex()

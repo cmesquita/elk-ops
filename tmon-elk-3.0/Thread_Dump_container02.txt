@@ -1,35 +1,26 @@
 
 ####################################################### 
-Thread dump for the running server: container01 
+Thread dump for the running server: container02 
 Dumped this Thread at 12/7/15 10:12 AM 
 #######################################################
 
-"[STANDBY] ExecuteThread: '5' for queue: 'weblogic.kernel.Default (self-tuning)'" waiting for lock weblogic.work.ExecuteThread@365b4369 WAITING
+"[STANDBY] ExecuteThread: '4' for queue: 'weblogic.kernel.Default (self-tuning)'" waiting for lock weblogic.work.ExecuteThread@6c2577d2 WAITING
 	java.lang.Object.wait(Native Method)
 	java.lang.Object.wait(Object.java:503)
 	weblogic.work.ExecuteThread.waitForRequest(ExecuteThread.java:238)
 	weblogic.work.ExecuteThread.run(ExecuteThread.java:264)
 
-"[STANDBY] ExecuteThread: '4' for queue: 'weblogic.kernel.Default (self-tuning)'" waiting for lock weblogic.work.ExecuteThread@21a6be60 WAITING
+"[STANDBY] ExecuteThread: '5' for queue: 'weblogic.kernel.Default (self-tuning)'" waiting for lock weblogic.work.ExecuteThread@fddb376 WAITING
 	java.lang.Object.wait(Native Method)
 	java.lang.Object.wait(Object.java:503)
 	weblogic.work.ExecuteThread.waitForRequest(ExecuteThread.java:238)
 	weblogic.work.ExecuteThread.run(ExecuteThread.java:264)
 
-"[ACTIVE] ExecuteThread: '3' for queue: 'weblogic.kernel.Default (self-tuning)'" waiting for lock weblogic.work.ExecuteThread@8fae6b0 WAITING
+"[STANDBY] ExecuteThread: '3' for queue: 'weblogic.kernel.Default (self-tuning)'" waiting for lock weblogic.work.ExecuteThread@2431101d WAITING
 	java.lang.Object.wait(Native Method)
 	java.lang.Object.wait(Object.java:503)
 	weblogic.work.ExecuteThread.waitForRequest(ExecuteThread.java:238)
 	weblogic.work.ExecuteThread.run(ExecuteThread.java:264)
-
-"DynamicListenThread[Default[3]]" RUNNABLE native
-	sun.nio.ch.ServerSocketChannelImpl.accept0(Native Method)
-	sun.nio.ch.ServerSocketChannelImpl.accept(ServerSocketChannelImpl.java:241)
-	weblogic.socket.WeblogicServerSocket.accept(WeblogicServerSocket.java:31)
-	weblogic.server.channels.DynamicListenThread$SocketAccepter.accept(DynamicListenThread.java:535)
-	weblogic.server.channels.DynamicListenThread$SocketAccepter.access$200(DynamicListenThread.java:417)
-	weblogic.server.channels.DynamicListenThread.run(DynamicListenThread.java:173)
-	java.lang.Thread.run(Thread.java:745)
 
 "DynamicListenThread[Default]" RUNNABLE native
 	sun.nio.ch.ServerSocketChannelImpl.accept0(Native Method)
@@ -58,13 +49,22 @@ Dumped this Thread at 12/7/15 10:12 AM
 	weblogic.server.channels.DynamicListenThread.run(DynamicListenThread.java:173)
 	java.lang.Thread.run(Thread.java:745)
 
-"weblogic.GCMonitor" waiting for lock java.lang.ref.ReferenceQueue$Lock@4a1ca1e2 TIMED_WAITING
+"DynamicListenThread[Default[3]]" RUNNABLE native
+	sun.nio.ch.ServerSocketChannelImpl.accept0(Native Method)
+	sun.nio.ch.ServerSocketChannelImpl.accept(ServerSocketChannelImpl.java:241)
+	weblogic.socket.WeblogicServerSocket.accept(WeblogicServerSocket.java:31)
+	weblogic.server.channels.DynamicListenThread$SocketAccepter.accept(DynamicListenThread.java:535)
+	weblogic.server.channels.DynamicListenThread$SocketAccepter.access$200(DynamicListenThread.java:417)
+	weblogic.server.channels.DynamicListenThread.run(DynamicListenThread.java:173)
+	java.lang.Thread.run(Thread.java:745)
+
+"weblogic.GCMonitor" waiting for lock java.lang.ref.ReferenceQueue$Lock@1118f27b TIMED_WAITING
 	java.lang.Object.wait(Native Method)
 	java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:135)
 	weblogic.platform.GCMonitorThread.waitForNotification(GCMonitorThread.java:88)
 	weblogic.platform.GCMonitorThread.run(GCMonitorThread.java:64)
 
-"Thread-14" waiting for lock java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject@1dc82271 WAITING
+"Thread-12" waiting for lock java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject@7cd77201 WAITING
 	sun.misc.Unsafe.park(Native Method)
 	java.util.concurrent.locks.LockSupport.park(LockSupport.java:186)
 	java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2043)
@@ -75,23 +75,17 @@ Dumped this Thread at 12/7/15 10:12 AM
 	weblogic.store.internal.PersistentStoreImpl.run(PersistentStoreImpl.java:1070)
 	java.lang.Thread.run(Thread.java:745)
 
-"[STANDBY] ExecuteThread: '2' for queue: 'weblogic.kernel.Default (self-tuning)'" waiting for lock weblogic.work.ExecuteThread@3e4d37fd WAITING
-	java.lang.Object.wait(Native Method)
-	java.lang.Object.wait(Object.java:503)
-	weblogic.work.ExecuteThread.waitForRequest(ExecuteThread.java:238)
-	weblogic.work.ExecuteThread.run(ExecuteThread.java:264)
-
 "DoSManager" TIMED_WAITING
 	java.lang.Thread.sleep(Native Method)
 	com.octetstring.vde.DoSManager.run(DoSManager.java:433)
 
-"VDE Transaction Processor Thread" waiting for lock com.octetstring.vde.backend.standard.TransactionProcessor@3f96e2ff WAITING
+"VDE Transaction Processor Thread" waiting for lock com.octetstring.vde.backend.standard.TransactionProcessor@247ddfaf WAITING
 	java.lang.Object.wait(Native Method)
 	java.lang.Object.wait(Object.java:503)
 	com.octetstring.vde.backend.standard.TransactionProcessor.waitChange(TransactionProcessor.java:367)
 	com.octetstring.vde.backend.standard.TransactionProcessor.run(TransactionProcessor.java:212)
 
-"[ACTIVE] ExecuteThread: '1' for queue: 'weblogic.kernel.Default (self-tuning)'" waiting for lock weblogic.work.ExecuteThread@4aba501b WAITING
+"[ACTIVE] ExecuteThread: '2' for queue: 'weblogic.kernel.Default (self-tuning)'" waiting for lock weblogic.work.ExecuteThread@43e86ce0 WAITING
 	java.lang.Object.wait(Native Method)
 	java.lang.Object.wait(Object.java:503)
 	weblogic.work.ExecuteThread.waitForRequest(ExecuteThread.java:238)
@@ -139,12 +133,18 @@ Dumped this Thread at 12/7/15 10:12 AM
 	weblogic.kernel.ExecuteThread.execute(ExecuteThread.java:147)
 	weblogic.kernel.ExecuteThread.run(ExecuteThread.java:119)
 
-"NM Reaper" waiting for lock java.util.TaskQueue@4b10f3f6 TIMED_WAITING
+"NM Reaper" waiting for lock java.util.TaskQueue@504408f4 TIMED_WAITING
 	java.lang.Object.wait(Native Method)
 	java.util.TimerThread.mainLoop(Timer.java:552)
 	java.util.TimerThread.run(Timer.java:505)
 
-"Thread-9" waiting for lock java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject@4600c1fa WAITING
+"[STANDBY] ExecuteThread: '1' for queue: 'weblogic.kernel.Default (self-tuning)'" waiting for lock weblogic.work.ExecuteThread@22a7f457 WAITING
+	java.lang.Object.wait(Native Method)
+	java.lang.Object.wait(Object.java:503)
+	weblogic.work.ExecuteThread.waitForRequest(ExecuteThread.java:238)
+	weblogic.work.ExecuteThread.run(ExecuteThread.java:264)
+
+"Thread-7" waiting for lock java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject@409a8d87 WAITING
 	sun.misc.Unsafe.park(Native Method)
 	java.util.concurrent.locks.LockSupport.park(LockSupport.java:186)
 	java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2043)
@@ -155,13 +155,13 @@ Dumped this Thread at 12/7/15 10:12 AM
 	weblogic.store.internal.PersistentStoreImpl.run(PersistentStoreImpl.java:1070)
 	java.lang.Thread.run(Thread.java:745)
 
-"weblogic.timers.TimerThread" waiting for lock java.lang.Object@5bbf27fd TIMED_WAITING
+"weblogic.timers.TimerThread" waiting for lock java.lang.Object@62c1bb33 TIMED_WAITING
 	java.lang.Object.wait(Native Method)
 	weblogic.timers.internal.TimerThread.doWait(TimerThread.java:114)
 	weblogic.timers.internal.TimerThread.access$000(TimerThread.java:22)
 	weblogic.timers.internal.TimerThread$Thread.run(TimerThread.java:290)
 
-"weblogic.time.TimeEventGenerator" waiting for lock weblogic.time.common.internal.TimeTable@62da8219 TIMED_WAITING
+"weblogic.time.TimeEventGenerator" waiting for lock weblogic.time.common.internal.TimeTable@1ce943ec TIMED_WAITING
 	java.lang.Object.wait(Native Method)
 	weblogic.time.common.internal.TimeTable.snooze(TimeTable.java:286)
 	weblogic.time.common.internal.TimeEventGenerator.run(TimeEventGenerator.java:117)
@@ -210,20 +210,12 @@ Dumped this Thread at 12/7/15 10:12 AM
 	weblogic.work.ExecuteThread.execute(ExecuteThread.java:295)
 	weblogic.work.ExecuteThread.run(ExecuteThread.java:254)
 
-"Timer-1" waiting for lock java.util.TaskQueue@6f14e6a2 TIMED_WAITING
+"Timer-1" waiting for lock java.util.TaskQueue@166a49c8 TIMED_WAITING
 	java.lang.Object.wait(Native Method)
 	java.util.TimerThread.mainLoop(Timer.java:552)
 	java.util.TimerThread.run(Timer.java:505)
 
-"Timer-0" waiting for lock java.util.TaskQueue@4531cea7 WAITING
-	java.lang.Object.wait(Native Method)
-	java.lang.Object.wait(Object.java:503)
-	java.util.TimerThread.mainLoop(Timer.java:526)
-	java.util.TimerThread.run(Timer.java:505)
-
-"VM JFR Buffer Thread" RUNNABLE
-null
-"JFR request timer" waiting for lock java.util.TaskQueue@48f6596e WAITING
+"Timer-0" waiting for lock java.util.TaskQueue@1c11f4f7 WAITING
 	java.lang.Object.wait(Native Method)
 	java.lang.Object.wait(Object.java:503)
 	java.util.TimerThread.mainLoop(Timer.java:526)
@@ -231,18 +223,18 @@ null
 
 "Signal Dispatcher" RUNNABLE
 null
-"Finalizer" waiting for lock java.lang.ref.ReferenceQueue$Lock@25696a2e WAITING
+"Finalizer" waiting for lock java.lang.ref.ReferenceQueue$Lock@5ee99286 WAITING
 	java.lang.Object.wait(Native Method)
 	java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:135)
 	java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:151)
 	java.lang.ref.Finalizer$FinalizerThread.run(Finalizer.java:209)
 
-"Reference Handler" waiting for lock java.lang.ref.Reference$Lock@2bba0532 WAITING
+"Reference Handler" waiting for lock java.lang.ref.Reference$Lock@3892cc18 WAITING
 	java.lang.Object.wait(Native Method)
 	java.lang.Object.wait(Object.java:503)
 	java.lang.ref.Reference$ReferenceHandler.run(Reference.java:133)
 
-"main" waiting for lock weblogic.t3.srvr.T3Srvr@41ab2c0b WAITING
+"main" waiting for lock weblogic.t3.srvr.T3Srvr@2d9558ac WAITING
 	java.lang.Object.wait(Native Method)
 	java.lang.Object.wait(Object.java:503)
 	weblogic.t3.srvr.T3Srvr.waitForDeath(T3Srvr.java:995)

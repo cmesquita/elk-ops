@@ -8,27 +8,40 @@ def tmonMetricsMonitor():
 	paramAdminUser 	= configparser.getAdminUser()
 	paramAdminPass	= configparser.getAdminPass()
 	paramConnectString = configparser.getConnectString()
-
+	tmonLog = []	
+	
 	# tmonLog variable which has the data to be printed in the log file
-	tmonLog = str(metrics.getGCmetrics( paramServerList ) ) +  str(metrics.getJVMmetrics( paramServerList , paramAdminUser , paramAdminPass , paramConnectString ) ) + str(metrics.getHTTPSessions( paramServerList , paramAdminUser , paramAdminPass , paramConnectString )) + str(metrics.getOpenSockets( paramServerList , paramAdminUser , paramAdminPass , paramConnectString ) ) + str(metrics.getTimeStamp())
-
+	for i in paramServerList:
+		j = i.split()
+		tmonLog.append( [ j[0] , j[4] ,  str(metrics.getGCmetrics( i ) ) ,  str(metrics.getJVMmetrics( i , paramAdminUser , paramAdminPass , paramConnectString ) ) , str(metrics.getHTTPSessions( i , paramAdminUser , paramAdminPass , paramConnectString )) , str(metrics.getOpenSockets( i , paramAdminUser , paramAdminPass , paramConnectString ) ) , str(metrics.getTimeStamp() )])
+	
+	# this is log print format for jvm related
+	#container || app || gc time || gc count || heap usage || http sessions cnt || open sockets cnt || timestamp 
 	return tmonLog
 
 def tmonStackMonitor():
 	paramServerList = configparser.getServerList()
-	i = threads.getThreadStucksCount( paramServerList )
-	#[0] threads id list , [1] count threads hogging , [2] count threads stuck
-	print 'total hogging: ' + str(i[1]) + ' total stucks: ' + str(i[2]) 
-	#for j in i[0]:
-	#	print j
-	#print i[0]	
-	threads.getThreadStackHash( paramServerList ,  i[0] )
-	#	print j
-
+	tmonLog2 = []
+	for i in paramServerList:
+		j = i.split()
+		hogging_cnt = threads.getThreadStucksCount( i )[1]
+		stuck_cnt = threads.getThreadStucksCount( i )[2]
+		for z in threads.getThreadStackHash( i ,  threads.getThreadStucksCount( i )[0] ):
+			tmonLog2.append( [ j[0] , j[4] , hogging_cnt , stuck_cnt , z[0] ] )
+	return tmonLog2
+	
 		
 
-if __name__== "main":
-	tmonStackMonitor()
-	#file = open("tmon.log","w")
- 	#file.write(   tmonMetricsMonitor()  )
-	#file.close()
+if __name__== "main": 
+
+	file = open("tmon.log","w")
+	for content_tmon in tmonMetricsMonitor():
+		file.write( str(content_tmon) )
+		file.write( "\n")
+	file.close()	
+
+	file = open("tmon2.log","w")
+	for content_tmon2 in tmonStackMonitor():
+		file.write(  str(content_tmon2) )
+		file.write( "\n")
+	file.close()
